@@ -5,6 +5,7 @@ class SearchBar extends Component {
     super(props)
     this.state = { term: '' };
     this.onInputChange = this.onInputChange.bind(this)
+    // https://stackoverflow.com/questions/32317154/react-uncaught-typeerror-cannot-read-property-setstate-of-undefined
   }
 
   onInputChange({ target }) {
