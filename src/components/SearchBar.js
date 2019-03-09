@@ -11,6 +11,8 @@ class SearchBar extends Component {
     // We take this new function and override the existing function, by assigning the new function to the existing function that has the incorrect 'undefined' value for 'this'
   }
 
+  // When we are in a class-based component we reference the 'props' object with 'this.props'
+
   // state = { term: '' };
 
   // 'this' is a reference back to the class itself
@@ -27,6 +29,7 @@ class SearchBar extends Component {
   onFormSubmit = (event) => {
     event.preventDefault();
     // Prevents forms from automatically submitting itself when user hits 'enter'
+    this.props.onSubmit(this.state.term)
     console.log(this.state.term)
   }
   // One of the special features of ES6 arrow functions is that they automatically bind the value of 'this' to all the code within the block, so we don't have to bind the function to 'this' in the constructor lifecycle method
