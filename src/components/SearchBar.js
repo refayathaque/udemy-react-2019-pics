@@ -4,6 +4,7 @@ class SearchBar extends Component {
   constructor(props) {
     super(props)
     this.state = { term: '' };
+    this.onFormSubmit = this.onFormSubmit.bind(this)
     this.onInputChange = this.onInputChange.bind(this)
     // https://stackoverflow.com/questions/32317154/react-uncaught-typeerror-cannot-read-property-setstate-of-undefined
   }
@@ -13,10 +14,16 @@ class SearchBar extends Component {
     console.log(this.state.term)
   }
 
+  onFormSubmit(event) {
+    event.preventDefault();
+    // Prevents forms from automatically submitted itself when user hits 'enter'
+    console.log(this.state.term)
+  }
+
   render() {
     return(
       <div className="ui segment">
-        <form className="ui form">
+        <form onSubmit={this.onFormSubmit} className="ui form">
           <div className="field">
             <label>Image Search</label>
             {/* <input type="text" value={this.state.term} onChange={this.onInputChange}/> */}
