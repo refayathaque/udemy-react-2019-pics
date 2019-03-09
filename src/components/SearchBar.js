@@ -4,21 +4,32 @@ class SearchBar extends Component {
   constructor(props) {
     super(props)
     this.state = { term: '' };
-    this.onFormSubmit = this.onFormSubmit.bind(this)
+    // this.onFormSubmit = this.onFormSubmit.bind(this)
     this.onInputChange = this.onInputChange.bind(this)
     // https://stackoverflow.com/questions/32317154/react-uncaught-typeerror-cannot-read-property-setstate-of-undefined
+    // When we 'bind' a function, are are producing a whole new version of that function (essentially a new function altogether), and the new version of the function that is created is fixed with the correct value of 'this', the correct value of 'this' is an instance of this class
+    // We take this new function and override the existing function, by assigning the new function to the existing function that has the incorrect 'undefined' value for 'this'
   }
+
+  // 'this' is a reference back to the class itself
 
   onInputChange({ target }) {
     this.setState({ term: target.value })
     console.log(this.state.term)
   }
 
-  onFormSubmit(event) {
+  // onFormSubmit(event) {
+  //   event.preventDefault();
+  //   console.log(this.state.term)
+  // }
+
+  onFormSubmit = (event) => {
     event.preventDefault();
-    // Prevents forms from automatically submitted itself when user hits 'enter'
+    // Prevents forms from automatically submitting itself when user hits 'enter'
     console.log(this.state.term)
   }
+  // One of the special features of arrow functions is that they automatically bind the value of 'this' to all the code within the block, so we don't have to bind the function to 'this' in the constructor lifecycle method
+
 
   render() {
     return(
@@ -33,6 +44,7 @@ class SearchBar extends Component {
             {/* Event handler properties can also be written using an alternate syntax, using which you do not need to define callbacks as separate functions, you can define and invoke the callback using arrow function syntax by passing the arro functuon to the property itself */}
             {/* Passing arrow function directly to the property (event handler) itself */}
             <input type="text" value={this.state.term} onChange={({ target }) => this.setState({ term: target.value})}/>
+            {/* One of the special features of arrow functions is that they automatically bind the value of 'this' to all the code within the block */}
           </div>
         </form>
       </div>
