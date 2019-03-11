@@ -25,9 +25,11 @@ class SearchBar extends Component {
   // }
 
   onFormSubmit = (event) => {
+    const { onSearchSubmit } = this.props
+    // ES6 Destructuring used above, same as this.props.onSearchSubmit
     event.preventDefault();
     // Prevents forms from automatically submitting itself when user hits 'enter'
-    this.props.onSearchSubmit(this.state.term)
+    onSearchSubmit(this.state.term)
     // When we are in a class-based component we reference the 'props' object with 'this.props'
     console.log(this.state.term)
   }
