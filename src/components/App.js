@@ -3,9 +3,23 @@ import axios from 'axios';
 import SearchBar from 'components/SearchBar'
 
 class App extends Component {
-  onSearchSubmit(term) {
+  // onSearchSubmit(term) {
+  //   console.log(term);
+  //   axios.get('https://api.unsplash.com/search/photos', {
+  //     params: { query: term },
+  //     headers: { Authorization: 'Client-ID 6d260733b6a12cac2762299e2ab7ef807387888008e19516b3342834fd6eb523' }
+  //     // A 'promise' is an object that will essentially give us a notification when a network request is completed, and the `.then()` function will have a callback inside of it that will be invoked sometime in the future when the promise is resolved (i.e., we get the notification that a network request is complete), the `.then()` function's callback will have its parameter set to whatever data is returned from the network request
+  //   }).then((response) => { console.log(response.data.results) });
+  // }
+  // Alternative to ^ and writing out API calls/network requests is with the `async-await` syntax
+  async onSearchSubmit(term) {
     console.log(term);
-
+    const response = await axios.get('https://api.unsplash.com/search/photos', {
+      params: { query: term },
+      headers: { Authorization: 'Client-ID 6d260733b6a12cac2762299e2ab7ef807387888008e19516b3342834fd6eb523' }
+      // Above we are 'awaiting' the promise to be resolved, once it is resolved, we are assigning `response` to the API call's return object
+    });
+    console.log(response.data.results)
   }
 
   render() {
