@@ -3,6 +3,14 @@ import axios from 'axios';
 import SearchBar from 'components/SearchBar'
 
 class App extends Component {
+  // state = { images: [] };
+  // ^ Alternatively, you can initialize class component state outside the constructor lifecycle method
+  constructor(props) {
+    super(props)
+    this.state = { images: [] };
+    this.onSearchSubmit = this.onSearchSubmit.bind(this)
+  }
+
   // onSearchSubmit(term) {
   //   console.log(term);
   //   axios.get('https://api.unsplash.com/search/photos', {
@@ -19,14 +27,28 @@ class App extends Component {
       headers: { Authorization: 'Client-ID 6d260733b6a12cac2762299e2ab7ef807387888008e19516b3342834fd6eb523' }
       // Above we are 'awaiting' the promise to be resolved, once it is resolved, we are assigning `response` to the API call's return object
     });
-    console.log(response.data.results)
+    const { results } = response.data
+    this.setState({ images: results })
+    console.log(this.state.images)
   }
+
+  // If we don't want to bind the above function we can convert it to an arrow functions
+  // onSearchSubmit = async (term) => {
+  //   const response = await axios.get('https://api.unsplash.com/search/photos', {
+  //     params: { query: term },
+  //     headers: { Authorization: 'Client-ID 6d260733b6a12cac2762299e2ab7ef807387888008e19516b3342834fd6eb523' }
+  //   });
+  //   const { results } = response.data
+  //   this.setState({ images: results })
+  //   console.log(this.state.images)
+  // }
 
   render() {
     return (
       <div className="ui container" style={{ marginTop: '10px' }}>
         <SearchBar onSearchSubmit={this.onSearchSubmit}/>
         {/* We are passing down (as props) a callback function in order to get the child component to pass 'up' its state to this component */}
+        Found: {this.state.images.length} images
       </div>
     );
   }

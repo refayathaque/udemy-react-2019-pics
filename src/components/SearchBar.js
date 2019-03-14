@@ -34,7 +34,7 @@ class SearchBar extends Component {
     console.log(this.state.term)
   }
   // One of the special features of ES6 arrow functions is that they automatically bind the value of 'this' to all the code within the block, so we don't have to bind the function to 'this' in the constructor lifecycle method
-  // This also works when the callback function passed directly to the event handler property is an arrow function (see below, under 'Event handler properties can also be written using an alternate syntax')
+  // This also works when the callback function passed directly to the event handler property is an arrow function (see below, under 'Event handler properties can also be written using an alternate syntax...')
 
   render() {
     return(
