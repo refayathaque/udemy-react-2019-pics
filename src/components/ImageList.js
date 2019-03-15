@@ -9,7 +9,14 @@ import React from 'react';
 
 const ImageList = ({ images }) => {
   console.log(images)
-  return <div>ImageList</div>
+
+  const imgElements = images.map(({ urls, id, alt_description }) => {
+    // ^ ES6 Destructuring in the map function's argument
+    return <img src={urls.regular} key={id} alt={alt_description} />
+    // When it comes to rendering lists, including a key as an element (of the root element) property improves React's rendering performance
+  })
+
+  return <div>{imgElements}</div>
 };
 
 export default ImageList;
