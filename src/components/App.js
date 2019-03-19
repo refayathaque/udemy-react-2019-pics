@@ -48,10 +48,10 @@ class App extends Component {
     const { images } = this.state
     return (
       <div className="ui container" style={{ marginTop: '10px' }}>
-        <SearchBar onSearchSubmit={this.onSearchSubmit}/>
+        <SearchBar onSearchSubmit={this.onSearchSubmit} />
         {/* We are passing down (as props) a callback function in order to get the child component to pass 'up' its state to this component */}
         Found: {images.length} images
-        <ImageList images={images}/>
+        <ImageList images={images} />
       </div>
     );
   }
